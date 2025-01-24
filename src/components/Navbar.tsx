@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
-import { CodeIcon } from "lucide-react";
+import { FileCode2 } from "lucide-react";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 // import DasboardBtn from "./DasboardBtn";
 
@@ -13,9 +13,9 @@ function Navbar() {
           href="/"
           className="flex items-center gap-2 font-semibold text-2xl mr-6 font-mono hover:opacity-80 transition-opacity"
         >
-          <CodeIcon className="size-8 text-emerald-500" />
-          <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-            CodeSync
+          <FileCode2 className="size-8 text-rose-500" />
+          <span className="bg-gradient-to-r from-rose-600 to-rose-500 bg-clip-text text-transparent">
+            MeetScript
           </span>
         </Link>
 
