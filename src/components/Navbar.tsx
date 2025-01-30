@@ -22,9 +22,9 @@ function Navbar() {
         {/* RIGHT SIDE - ACTIONS */}
         <SignedIn>
           <div className="flex items-center space-x-4 ml-auto">
+            <UserButton />
             <DasboardBtn />
             <ModeToggle />
-            <UserButton />
           </div>
         </SignedIn>
       </div>
