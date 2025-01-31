@@ -3,17 +3,17 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { StreamClient } from "@stream-io/node-sdk";
 
-export const streamTokenProvider = async () => {
+export const streamTokenProvider = async (): Promise<string> => {
   const user = await currentUser();
-  if (!user) {
-    throw new Error("User not found");
-  }
+
+  if (!user) throw new Error("User not authenticated");
 
   const streamClient = new StreamClient(
-    process.env.Next_PUBLIC_STREAM_API_KEY!,
-    process.env.STREAM_API_SECRET!
+    process.env.NEXT_PUBLIC_STREAM_API_KEY!,
+    process.env.STREAM_SECRET_KEY!
   );
 
   const token = streamClient.generateUserToken({ user_id: user.id });
+
   return token;
 };

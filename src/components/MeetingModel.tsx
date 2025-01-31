@@ -21,7 +21,17 @@ function MeetingModel({
 
   const { createInstantMeeting, joinMeeting } = useMeetingActions();
 
-  const handleStart = () => {};
+  const handleStart = () => {
+    if (isJoinMeeting) {
+      // extrrat meeting id from url
+      const meetingId = meetingUrl.split("/").pop();
+      if (meetingId) joinMeeting(meetingId);
+    } else {
+      createInstantMeeting();
+    }
+    setMeetingUrl("");
+    onClose();
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
