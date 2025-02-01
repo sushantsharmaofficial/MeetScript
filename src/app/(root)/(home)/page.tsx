@@ -9,6 +9,7 @@ import { api } from "../../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import MeetingModel from "@/components/MeetingModel";
 import { useUserRole } from "@/hooks/useUserRole";
+import LoaderUI from "@/components/LoaderUI";
 
 export default function Home() {
   // router
@@ -36,7 +37,7 @@ export default function Home() {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoaderUI />;
   return (
     <div className=" container max-w-7xl mx-auto p-6">
       {/* WELCOME SECTION */}
