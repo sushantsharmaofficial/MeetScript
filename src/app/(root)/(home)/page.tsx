@@ -12,6 +12,9 @@ import { useUserRole } from "@/hooks/useUserRole";
 import LoaderUI from "@/components/LoaderUI";
 import MeetingCard from "@/components/MeetingCard";
 import { Loader2Icon } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function Home() {
   // router
@@ -41,17 +44,53 @@ export default function Home() {
 
   if (isLoading) return <LoaderUI />;
   return (
-    <div className=" container max-w-7xl mx-auto p-6">
+    <div className=" container  max-w-7xl mx-auto p-6 ">
       {/* WELCOME SECTION */}
-      <div className="rounded-lg bg-card p-6 border shadow-sm mb-10">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-rose-600 to-rose-500 bg-clip-text text-transparent">
-          Welcome back!
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          {isInterviewer
-            ? "Manage your interviews and review candidates effectively"
-            : "Access your upcoming interviews and preparations"}
-        </p>
+      <div className="relative mb-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-purple-500/10 blur-3xl" />
+        <Card className="relative  dark:bg-black/40 backdrop-blur-xl hover:border-primary/50   overflow-hidden  transition-all duration-300">
+          <CardContent className="p-10">
+            <div className="flex items-start justify-between">
+              <div className="space-y-4">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-rose-500/10 text-rose-500 text-sm">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Welcome to your interview hub
+                </div>
+                <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-purple-500">
+                  Welcome back!
+                </h1>
+                <p className="text-zinc-400 max-w-2xl">
+                  Manage your interviews and review candidates effectively. Your
+                  next great hire could be just a conversation away.
+                </p>
+                {isInterviewer ? (
+                  <div className="flex items-center gap-4 pt-2">
+                    <button
+                      className="inline-flex items-center px-4 py-2 rounded-lg bg-rose-500 text-white hover:bg-rose-600 transition-colors"
+                      onClick={() => handleQuickAction("New Call")}
+                    >
+                      Start Interview
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </button>
+                    <button
+                      onClick={() => router.push("/schedule")}
+                      className="inline-flex items-center px-4 py-2 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-colors"
+                    >
+                      View Schedule
+                    </button>
+                  </div>
+                ) : (
+                  <p className="inline-flex items-center px-4 py-2 rounded-lg bg-rose-500 text-white hover:bg-rose-600 transition-colors">
+                    Wait for Interview
+                  </p>
+                )}
+              </div>
+              <div className="hidden lg:block">
+                {/* Add illustration or stats here */}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       {isInterviewer ? (
@@ -101,6 +140,30 @@ export default function Home() {
           </div>
         </>
       )}
+
+      <Card className="mt-12 border-0 dark:bg-zinc-900/50 backdrop-blur-sm">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-1">
+                Quick Tips
+              </h3>
+              <p className="text-sm text-zinc-400">
+                Stay organized and keep track of your interviews.
+              </p>
+            </div>
+
+            <a
+              href="https://ung.edu/career-services/online-career-resources/interview-well/tips-for-a-successful-interview.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-lg bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition-colors"
+            >
+              View Materials
+            </a>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
