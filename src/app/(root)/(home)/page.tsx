@@ -48,7 +48,7 @@ export default function Home() {
       {/* WELCOME SECTION */}
       <div className="relative mb-10">
         <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-purple-500/10 blur-3xl" />
-        <Card className="relative  dark:bg-black/40 backdrop-blur-xl hover:border-primary/50   overflow-hidden  transition-all duration-300">
+        <Card className="relative  dark:bg-black/40 backdrop-blur-xl">
           <CardContent className="p-10">
             <div className="flex items-start justify-between">
               <div className="space-y-4">
@@ -143,7 +143,7 @@ export default function Home() {
 
       <Card className="mt-12 border-0 dark:bg-zinc-900/50 backdrop-blur-sm">
         <CardContent className="p-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold text-white mb-1">
                 Quick Tips
@@ -157,7 +157,7 @@ export default function Home() {
               href="https://ung.edu/career-services/online-career-resources/interview-well/tips-for-a-successful-interview.php"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition-colors"
+              className="px-4 py-2 rounded-lg flex  bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition-colors"
             >
               View Materials
             </a>
