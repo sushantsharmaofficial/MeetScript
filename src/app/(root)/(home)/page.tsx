@@ -1,7 +1,6 @@
 "use client";
 
 import { QUICK_ACTIONS } from "@/constants";
-import { action } from "../../../../convex/_generated/server";
 import ActionCard from "@/components/ui/ActionCard";
 import { useState } from "react";
 import { useQuery } from "convex/react";
@@ -14,7 +13,6 @@ import MeetingCard from "@/components/MeetingCard";
 import { Loader2Icon } from "lucide-react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
 
 export default function Home() {
   // router
