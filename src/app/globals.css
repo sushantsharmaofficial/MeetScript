@@ -77,3 +77,44 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom time input styling to match system theme */
+@layer components {
+  input[type="time"] {
+    color-scheme: light dark;
+  }
+  
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+    transition: filter 0.2s ease;
+  }
+  
+  .dark input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+  }
+  
+  input[type="time"]:hover::-webkit-calendar-picker-indicator {
+    filter: invert(0.2);
+  }
+  
+  .dark input[type="time"]:hover::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+  
+  input[type="time"]::-webkit-datetime-edit {
+    color: hsl(var(--foreground));
+  }
+  
+  input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+    background: transparent;
+  }
+  
+  input[type="time"]::-webkit-datetime-edit-text {
+    color: hsl(var(--muted-foreground));
+  }
+  
+  input[type="time"]:focus::-webkit-datetime-edit-fields-wrapper {
+    background: transparent;
+    outline: none;
+  }
+}

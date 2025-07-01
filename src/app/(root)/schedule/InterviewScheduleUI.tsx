@@ -1,11 +1,11 @@
-import { useUser } from "@clerk/nextjs";
-import { useStreamVideoClient } from "@stream-io/video-react-sdk";
-import { useMutation, useQuery } from "convex/react";
-import React, { useState } from "react";
-import { api } from "../../../../convex/_generated/api";
+import {useUser} from "@clerk/nextjs";
+import {useStreamVideoClient} from "@stream-io/video-react-sdk";
+import {useMutation, useQuery} from "convex/react";
+import React, {useState} from "react";
+import {api} from "../../../../convex/_generated/api";
 import toast from "react-hot-toast";
-import { set } from "date-fns";
-import { title } from "process";
+import {set} from "date-fns";
+import {title} from "process";
 import {
   Dialog,
   DialogContent,
@@ -13,9 +13,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Textarea} from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -23,15 +23,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Loader2Icon, XIcon } from "lucide-react";
+import {Loader2Icon, XIcon} from "lucide-react";
 import UserInfo from "@/components/UserInfo";
-import { Calendar } from "@/components/ui/calendar";
-import { TIME_SLOTS } from "@/constants";
+import {Calendar} from "@/components/ui/calendar";
 import MeetingCard from "@/components/MeetingCard";
 
 function InterviewScheduleUI() {
   const client = useStreamVideoClient();
-  const { user } = useUser();
+  const {user} = useUser();
   const [open, setOpen] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
 
@@ -61,7 +60,7 @@ function InterviewScheduleUI() {
     setIsCreating(true);
 
     try {
-      const { title, description, date, time, candidateId, interviewerIds } =
+      const {title, description, date, time, candidateId, interviewerIds} =
         formData;
       const [hours, minutes] = time.split(":");
       const meetingDate = new Date(date);
@@ -161,7 +160,7 @@ function InterviewScheduleUI() {
                   placeholder="Interview title"
                   value={formData.title}
                   onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
+                    setFormData({...formData, title: e.target.value})
                   }
                 />
               </div>
@@ -173,7 +172,7 @@ function InterviewScheduleUI() {
                   placeholder="Interview description"
                   value={formData.description}
                   onChange={(e) =>
-                    setFormData({ ...formData, description: e.target.value })
+                    setFormData({...formData, description: e.target.value})
                   }
                   rows={3}
                 />
@@ -185,7 +184,7 @@ function InterviewScheduleUI() {
                 <Select
                   value={formData.candidateId}
                   onValueChange={(candidateId) =>
-                    setFormData({ ...formData, candidateId })
+                    setFormData({...formData, candidateId})
                   }
                 >
                   <SelectTrigger>
@@ -255,7 +254,7 @@ function InterviewScheduleUI() {
                     mode="single"
                     selected={formData.date}
                     onSelect={(date) =>
-                      date && setFormData({ ...formData, date })
+                      date && setFormData({...formData, date})
                     }
                     disabled={(date) => date < new Date()}
                     className="rounded-md border"
@@ -266,21 +265,15 @@ function InterviewScheduleUI() {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Time</label>
-                  <Select
+                  <Input
+                    type="time"
                     value={formData.time}
-                    onValueChange={(time) => setFormData({ ...formData, time })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select time" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {TIME_SLOTS.map((time) => (
-                        <SelectItem key={time} value={time}>
-                          {time}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    onChange={(e) =>
+                      setFormData({...formData, time: e.target.value})
+                    }
+                    className="w-full [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-60 hover:[&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-datetime-edit]:px-1 [&::-webkit-datetime-edit-fields-wrapper]:px-1 [&::-webkit-datetime-edit-text]:px-1 [&::-webkit-datetime-edit-hour-field]:px-1 [&::-webkit-datetime-edit-minute-field]:px-1 focus:[&::-webkit-datetime-edit-fields-wrapper]:bg-transparent"
+                    required
+                  />
                 </div>
               </div>
 
