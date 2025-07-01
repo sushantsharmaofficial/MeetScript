@@ -6,9 +6,9 @@ import {
   SpeakerLayout,
   useCallStateHooks,
 } from "@stream-io/video-react-sdk";
-import { LayoutListIcon, LoaderIcon, UsersIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import {LayoutListIcon, LoaderIcon, UsersIcon} from "lucide-react";
+import {useRouter} from "next/navigation";
+import React, {useState} from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -20,15 +20,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
+import {Button} from "./ui/button";
 import EndCallButton from "./EndCallButton";
 import CodeEditor from "./CodeEditor";
+import MeetingUrlCard from "./MeetingUrlCard";
 
 function MeetingRoom() {
   const router = useRouter();
   const [layout, setLayout] = useState<"grid" | "speaker">("speaker");
   const [showParticipants, setShowParticipants] = useState(false);
-  const { useCallCallingState } = useCallStateHooks();
+  const {useCallCallingState} = useCallStateHooks();
 
   const callingState = useCallCallingState();
 
@@ -100,6 +101,9 @@ function MeetingRoom() {
               </div>
             </div>
           </div>
+
+          {/* FLOATING URL CARD */}
+          <MeetingUrlCard />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={65} minSize={25}>

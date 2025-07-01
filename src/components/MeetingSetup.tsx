@@ -3,13 +3,14 @@ import {
   useCall,
   VideoPreview,
 } from "@stream-io/video-react-sdk";
-import { useEffect, useState } from "react";
-import { Card } from "./ui/card";
-import { CameraIcon, MicIcon, SettingsIcon } from "lucide-react";
-import { Switch } from "./ui/switch";
-import { Button } from "./ui/button";
+import {useEffect, useState} from "react";
+import {Card} from "./ui/card";
+import {CameraIcon, MicIcon, SettingsIcon} from "lucide-react";
+import {Switch} from "./ui/switch";
+import {Button} from "./ui/button";
+import MeetingSetupUrlCard from "./MeetingSetupUrlCard";
 
-function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
+function MeetingSetup({onSetupComplete}: {onSetupComplete: () => void}) {
   const [isCameraDisabled, setIsCameraDisabled] = useState(true);
   const [isMicDisabled, setIsMicDisabled] = useState(false);
 
@@ -34,6 +35,9 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-background/95">
+      {/* URL Card positioned on left side */}
+      <MeetingSetupUrlCard />
+
       <div className="w-full max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* VIDEO PREVIEW CONTAINER */}
@@ -54,7 +58,6 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
           </Card>
 
           {/* CARD CONTROLS */}
-
           <Card className="md:col-span-1 p-6">
             <div className="h-full flex flex-col">
               {/* MEETING DETAILS  */}
